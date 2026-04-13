@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+    background: linear-gradient(to right, #ff4da6, #800040);
+    color: white;
+    font-family: Arial;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-top: 30px;
+}
+
+.set {
+    margin-top: 100px;
+}
+
+.drum {
+    outline: none;
+    border: 5px solid #404B69;
+    font-size: 2rem;
+    margin: 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-size: cover;
+}
+
+/* Background images */
+.Y { background-image: url("images/tom1.png"); }
+.U { background-image: url("images/tom2.png"); }
+.K { background-image: url("images/tom3.png"); }
+.T { background-image: url("images/tom4.png"); }
+.H { background-image: url("images/tom5.png"); }
+.A { background-image: url("images/snare.png"); }
+
+
+/* Animation */
+.pressed {
+    box-shadow: 0 3px 10px white;
+    transform: scale(0.9);
+}
