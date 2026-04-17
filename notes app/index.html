@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, textarea {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        #notes {
+            margin-top: 20px;
+        }
+
+        .note-card {
+            background: white;
+            width: 300px;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .note-card h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .note-card p {
+            color: #555;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>📝 Notes App</h1>
+
+<input id="title" placeholder="Title"><br>
+<textarea id="content" placeholder="Write your note..."></textarea><br>
+
+<button onclick="addNote()">Add Note</button>
+
+<div id="notes"></div>
+
+<script>
+async function getNotes() {
+    let res = await fetch("http://127.0.0.1:8000/notes/");
+    let data = await res.json();
+
+    let output = "";
+
+    data.forEach(note => {
+        output += `
+            <div class="note-card">
+                <h3>${note.title}</h3>
+                <p>${note.content}</p>
+            </div>
+        `;
+    });
+
+    document.getElementById("notes").innerHTML = output;
+}
+
+async function addNote() {
+    let title = document.getElementById("title").value;
+    let content = document.getElementById("content").value;
+
+    if (!title || !content) {
+        alert("Fill all fields");
+        return;
+    }
+
+    await fetch("http://127.0.0.1:8000/create/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title, content })
+    });
+
+    getNotes();
+
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+}
+
+getNotes();
+</script>
+
+</body>
+</html>
