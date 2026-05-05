@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Crop Recommendation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>🌾 Smart Crop Recommendation</h1>
+
+  <form id="cropForm">
+    <label>Soil Type:</label>
+    <select id="soil">
+      <option value="loamy">Loamy</option>
+      <option value="clayey">Clayey</option>
+      <option value="sandy">Sandy</option>
+    </select>
+
+    <label>Season:</label>
+    <select id="season">
+      <option value="summer">Summer</option>
+      <option value="winter">Winter</option>
+      <option value="rainy">Rainy</option>
+    </select>
+
+    <label>Location:</label>
+    <input type="text" id="location" placeholder="Enter location">
+
+    <button type="submit">Get Recommendation</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
